@@ -460,6 +460,9 @@ if os.environ.get('ODO_VERSION'):
 if os.environ.get('KUBECTL_VERSION'):
     c.Spawner.environment['KUBECTL_VERSION'] = os.environ.get('KUBECTL_VERSION')
 
+if os.environ.get('CRW_URL'):
+    c.Spawner.environment['CRW_URL'] = os.environ.get('CRW_URL')
+
 # Common functions for creating projects, injecting resources etc.
 
 namespace_resource = api_client.resources.get(
