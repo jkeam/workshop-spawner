@@ -3,7 +3,7 @@
 # against the OpenShift cluster using OAuth.
 
 from tornado import web
-import requests, re
+import requests,json
 
 # Configure standalone KeyCloak as the authentication provider for
 # users. Environments variables have already been set from the
@@ -13,11 +13,16 @@ c.JupyterHub.authenticator_class = "generic-oauth"
 
 c.OAuthenticator.login_service = "KeyCloak"
 
+client_secret = os.environ['OAUTH_CLIENT_SECRET']
+
 c.OAuthenticator.oauth_callback_url = (
         '%s://%s/hub/oauth_callback' % (public_protocol, public_hostname))
 
 c.OAuthenticator.client_id = os.environ.get('KEYCLOAK_CLIENT_ID')
-c.OAuthenticator.client_secret = ""
+c.OAuthenticator.client_secret = client_secret
+
+c.Authenticator.enable_auth_state = True
+c.CryptKeeper.keys = [ client_secret.encode('utf-8') ]
 
 c.OAuthenticator.tls_verify = False
 
@@ -185,11 +190,13 @@ def modify_pod_hook(spawner, pod):
     pod.spec.service_account_name = user_account_name
     pod.spec.automount_service_account_token = True
 
-    # Grab the OpenShift user access token using the default password.
-    params = {'response_type': "token",'client_id': 'openshift-challenging-client'}
-    headers = {'X-CSRF-Token':'1'}
-    response = requests.get("https://oauth-openshift.apps.cluster-dso-80a8.dso-80a8.example.opentlc.com/oauth/authorize", params=params, headers=headers, auth=(short_name, os.environ.get('WORKSHOP_USER_PASSWORD')), allow_redirects=False)
-    access_token = re.search('access_token=([^&]*)', response.headers.get("Location")).group(1)
+    # Exchange the Keycloak token from the auth state for the user's openshift token
+    auth_state = yield spawner.user.get_auth_state()
+    keycloak_token = auth_state['access_token']
+
+    data = {'grant_type': 'urn:ietf:params:oauth:grant-type:token-exchange', 'subject_token': keycloak_token, 'requested_issuer': 'openshift-v4', 'client_id': os.environ.get('KEYCLOAK_CLIENT_ID')}
+    response = requests.post('%s/realms/%s/protocol/openid-connect/token' % (os.environ.get('KEYCLOAK_AUTH_URL'), os.environ.get('KEYCLOAK_REALM')) , data = data)
+    access_token = json.loads(response.content)['access_token']
 
     # Ensure that a service account exists corresponding to the user.
     # Need to do this as it may have been cleaned up if the session had
