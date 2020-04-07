@@ -183,10 +183,6 @@
         {
             "name": "CRW_URL",
             "value": "https://codeready-user3-cicd.apps.cluster-dso-80a8.dso-80a8.example.opentlc.com"
-        },
-        {
-            "name": "WORKSHOP_USER_PASSWORD",
-            "value": "openshift"
         }
     ],
     "objects": [
@@ -669,10 +665,6 @@
                                     {
                                         "name": "CRW_URL",
                                         "value": "${CRW_URL}"
-                                    },
-                                    {
-                                        "name": "WORKSHOP_USER_PASSWORD",
-                                        "value": "${WORKSHOP_USER_PASSWORD}"
                                     }
                                 ],
                                 "volumeMounts": [
