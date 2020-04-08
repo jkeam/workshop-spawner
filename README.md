@@ -35,6 +35,8 @@ The spawner supports a number of different configurations, or modes, in which it
 
 * `jumpbox-server` - Users login through Keycloak. It defaults to only supplying an interactive terminal in the browser using the workshop terminal base image. The user has no access to the cluster itself to do anything. The terminal would be used to access a separate system.
 
+* `external-keycloak` - Similar to the hosted workshop configuration, but users need to login through Keycloak. This configuration assumes that the Keycloak server has already been provisioned, and that OpenShift (version 4.x) has been linked to the provided **client** as an Identity Provider. This mode was created for use with a workshop-dashboard that offers a CodeReady Workspaces tab. For example: quay.io/akrohg/workshop-dashboard-crw
+
 Deploying the spawner
 ---------------------
 
