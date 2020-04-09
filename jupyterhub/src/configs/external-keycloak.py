@@ -160,6 +160,10 @@ c.KubeSpawner.extra_containers.extend([
             {
                 "name": "BRIDGE_BRANDING",
                 "value": console_branding
+            },
+            {
+                "name": "BRIDGE_K8S_MODE_OFF_CLUSTER_ENDPOINT",
+                "value": os.environ.get('API_SERVER')
             }
         ],
         "resources": {

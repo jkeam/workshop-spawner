@@ -14,7 +14,7 @@
             "required": true
         },
         {
-            "name": "CLUSTER_SUBDOMAIN",
+            "name": "CLUSTER_DOMAIN",
             "value": "",
             "required": true
         },
@@ -665,6 +665,10 @@
                                     {
                                         "name": "CRW_URL",
                                         "value": "${CRW_URL}"
+                                    },
+                                    {
+                                        "name": "API_SERVER",
+                                        "value": "https://api.${CLUSTER_DOMAIN}:6443"
                                     }
                                 ],
                                 "volumeMounts": [
@@ -780,7 +784,7 @@
                 }
             },
             "spec": {
-                "host": "${WORKSHOP_NAME}-${SPAWNER_NAMESPACE}.${CLUSTER_SUBDOMAIN}",
+                "host": "${WORKSHOP_NAME}-${SPAWNER_NAMESPACE}.apps.${CLUSTER_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "${NAME_PREFIX}${WORKSHOP_NAME}-spawner",
