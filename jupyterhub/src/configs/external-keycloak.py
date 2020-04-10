@@ -131,7 +131,7 @@ c.KubeSpawner.extra_containers.extend([
         "env": [
             {
                 "name": "BRIDGE_K8S_MODE",
-                "value": "in-cluster"
+                "value": "off-cluster"
             },
             {
                 "name": "BRIDGE_LISTEN",
@@ -164,6 +164,10 @@ c.KubeSpawner.extra_containers.extend([
             {
                 "name": "BRIDGE_K8S_MODE_OFF_CLUSTER_ENDPOINT",
                 "value": os.environ.get('API_SERVER')
+            },
+            {
+                "name": "BRIDGE_K8S_MODE_OFF_CLUSTER_SKIP_VERIFY_TLS",
+                "value": "true"
             }
         ],
         "resources": {
