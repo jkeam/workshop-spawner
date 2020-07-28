@@ -4,7 +4,7 @@
 LOCATION=${1:local}
 QUAY_PROJECT=${2:-redhatgov}
 
-cd $(dirname $(realpath $0))/../dashboard
+cd $(dirname $(realpath $0))/../jupyterhub
 if [ -f .quay_creds -a -z "$1" ]; then
   LOCATION=quay
   . .quay_creds
