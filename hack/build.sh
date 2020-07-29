@@ -5,7 +5,7 @@ CONTAINER_IMAGE=workshop-spawner
 DOCKERFILE_DIR=jupyterhub
 
 function print_usage() {
-  echo "usage: $0 [-l (local|quay)] [-p QUAY_PROJECT] [-- BUILD_ARGS]"
+  echo "usage: $0 [-l (local|quay)] [-p QUAY_PROJECT] [-t CONTAINER_TAG] [-- BUILD_ARGS]"
 }
 
 # parse args
@@ -27,7 +27,16 @@ while [ $# -gt 0 ]; do
         QUAY_PROJECT=$(echo "$1" | cut -d= -f2-)
       fi
       ;;
+    -t|--tag=*)
+      if [ "$1" = '-t' ]; then
+        shift
+        CONTAINER_TAG="$1"
+      else
+        CONTAINER_TAG=$(echo "$1" | cut -d= -f2-)
+      fi
+      ;;
     --)
+      shift
       break
       ;;
     *)
@@ -50,6 +59,9 @@ fi
 if [ -z "$QUAY_PROJECT" ]; then
   QUAY_PROJECT=redhatgov
 fi
+if [ -z "$CONTAINER_TAG" ]; then
+  CONTAINER_TAG=latest
+fi
 
 # docker/podman problems
 if ! which docker &>/dev/null; then
@@ -64,7 +76,7 @@ fi
 # build
 case $LOCATION in
   local)
-    docker build "${@}" -t quay.io/$QUAY_PROJECT/$CONTAINER_IMAGE:latest .
+    docker build "${@}" -t quay.io/$QUAY_PROJECT/$CONTAINER_IMAGE:$CONTAINER_TAG .
   ;;
   quay)
     # designed to be used by travis-ci, where the docker_* variables are defined
@@ -74,8 +86,8 @@ case $LOCATION in
     fi
     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin quay.io || exit 2
 
-    docker build "${@}" -t quay.io/$QUAY_PROJECT/$CONTAINER_IMAGE:latest . || exit 3
-    docker push quay.io/$QUAY_PROJECT/$CONTAINER_IMAGE:latest || exit 4
+    docker build "${@}" -t quay.io/$QUAY_PROJECT/$CONTAINER_IMAGE:$CONTAINER_TAG . || exit 3
+    docker push quay.io/$QUAY_PROJECT/$CONTAINER_IMAGE:$CONTAINER_TAG || exit 4
   ;;
   *)
     print_usage >&2
