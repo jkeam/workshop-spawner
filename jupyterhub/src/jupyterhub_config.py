@@ -462,6 +462,8 @@ if os.environ.get('KUBECTL_VERSION'):
 
 if os.environ.get('CRW_URL'):
     c.Spawner.environment['CRW_URL'] = os.environ.get('CRW_URL')
+if os.environ.get('QUAY_URL'):
+    c.Spawner.environment['QUAY_URL'] = os.environ.get('QUAY_URL')
 
 # Common functions for creating projects, injecting resources etc.
 

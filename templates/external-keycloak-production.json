@@ -183,6 +183,10 @@
         {
             "name": "CRW_URL",
             "value": "https://codeready-user3-cicd.apps.cluster-dso-80a8.dso-80a8.example.opentlc.com"
+        },
+        {
+            "name": "QUAY_URL",
+            "value": ""
         }
     ],
     "objects": [
@@ -665,6 +669,10 @@
                                     {
                                         "name": "CRW_URL",
                                         "value": "${CRW_URL}"
+                                    },
+                                    {
+                                        "name": "QUAY_URL",
+                                        "value": "${QUAY_URL}"
                                     },
                                     {
                                         "name": "API_SERVER",
