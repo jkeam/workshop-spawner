@@ -203,7 +203,7 @@ def modify_pod_hook(spawner, pod):
     keycloak_token = auth_state['access_token']
 
     data = {'grant_type': 'urn:ietf:params:oauth:grant-type:token-exchange', 'subject_token': keycloak_token, 'requested_issuer': 'openshift-v4', 'client_id': os.environ.get('KEYCLOAK_CLIENT_ID')}
-    response = requests.post('%s/realms/%s/protocol/openid-connect/token' % (os.environ.get('KEYCLOAK_AUTH_URL'), os.environ.get('KEYCLOAK_REALM')) , data = data)
+    response = requests.post('%s/realms/%s/protocol/openid-connect/token' % (os.environ.get('KEYCLOAK_AUTH_URL'), os.environ.get('KEYCLOAK_REALM')) , data=data, verify=False)
     access_token = json.loads(response.content)['access_token']
 
     # Ensure that a service account exists corresponding to the user.
