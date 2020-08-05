@@ -460,10 +460,10 @@ if os.environ.get('ODO_VERSION'):
 if os.environ.get('KUBECTL_VERSION'):
     c.Spawner.environment['KUBECTL_VERSION'] = os.environ.get('KUBECTL_VERSION')
 
-if os.environ.get('CRW_URL'):
-    c.Spawner.environment['CRW_URL'] = os.environ.get('CRW_URL')
-if os.environ.get('QUAY_URL'):
-    c.Spawner.environment['QUAY_URL'] = os.environ.get('QUAY_URL')
+if os.environ.get('CUSTOM_TAB_1'):
+    c.Spawner.environment['CUSTOM_TAB_1'] = os.environ.get('CUSTOM_TAB_1')
+if os.environ.get('CUSTOM_TAB_2'):
+    c.Spawner.environment['CUSTOM_TAB_2'] = os.environ.get('CUSTOM_TAB_2')
 
 # Common functions for creating projects, injecting resources etc.
 
