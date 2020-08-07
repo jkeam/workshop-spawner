@@ -464,6 +464,10 @@ if os.environ.get('CUSTOM_TAB_1'):
     c.Spawner.environment['CUSTOM_TAB_1'] = os.environ.get('CUSTOM_TAB_1')
 if os.environ.get('CUSTOM_TAB_2'):
     c.Spawner.environment['CUSTOM_TAB_2'] = os.environ.get('CUSTOM_TAB_2')
+if os.environ.get('CUSTOM_TAB_3'):
+    c.Spawner.environment['CUSTOM_TAB_3'] = os.environ.get('CUSTOM_TAB_3')
+if os.environ.get('CUSTOM_TAB_4'):
+    c.Spawner.environment['CUSTOM_TAB_4'] = os.environ.get('CUSTOM_TAB_4')
 
 # Common functions for creating projects, injecting resources etc.
 
