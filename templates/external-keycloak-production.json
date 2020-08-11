@@ -90,7 +90,7 @@
         },
         {
             "name": "SPAWNER_IMAGE",
-            "value": "quay.io/akrohg/workshop-spawner:latest",
+            "value": "quay.io/akrohg/workshop-spawner-custom:latest",
             "required": true
         },
         {
