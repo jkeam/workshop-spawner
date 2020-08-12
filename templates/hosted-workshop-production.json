@@ -88,7 +88,7 @@
         },
         {
             "name": "SPAWNER_IMAGE",
-            "value": "quay.io/openshifthomeroom/workshop-spawner:7.1.0",
+            "value": "quay.io/akrohg/workshop-spawner-custom:latest",
             "required": true
         },
         {
@@ -142,6 +142,22 @@
             "name": "OAUTH_CLIENT_SECRET",
             "generate": "expression",
             "from": "[a-zA-Z0-9]{32}"
+        },
+        {
+            "name": "CUSTOM_TAB_1",
+            "value": ""
+        },
+        {
+            "name": "CUSTOM_TAB_2",
+            "value": ""
+        },
+        {
+            "name": "CUSTOM_TAB_3",
+            "value": ""
+        },
+        {
+            "name": "CUSTOM_TAB_4",
+            "value": ""
         }
     ],
     "objects": [
@@ -419,6 +435,22 @@
                                     {
                                         "name": "OAUTH_CLIENT_SECRET",
                                         "value": "${OAUTH_CLIENT_SECRET}"
+                                    },
+                                    {
+                                        "name": "CUSTOM_TAB_1",
+                                        "value": "${CUSTOM_TAB_1}"
+                                    },
+                                    {
+                                        "name": "CUSTOM_TAB_2",
+                                        "value": "${CUSTOM_TAB_2}"
+                                    },
+                                    {
+                                        "name": "CUSTOM_TAB_3",
+                                        "value": "${CUSTOM_TAB_3}"
+                                    },
+                                    {
+                                        "name": "CUSTOM_TAB_4",
+                                        "value": "${CUSTOM_TAB_4}"
                                     }
                                 ],
                                 "volumeMounts": [

@@ -90,7 +90,7 @@
         },
         {
             "name": "SPAWNER_IMAGE",
-            "value": "quay.io/akrohg/workshop-spawner:latest",
+            "value": "quay.io/akrohg/workshop-spawner-custom:latest",
             "required": true
         },
         {
@@ -181,8 +181,20 @@
             "value": "codeready-public"
         },
         {
-            "name": "CRW_URL",
-            "value": "https://codeready-user3-cicd.apps.cluster-dso-80a8.dso-80a8.example.opentlc.com"
+            "name": "CUSTOM_TAB_1",
+            "value": ""
+        },
+        {
+            "name": "CUSTOM_TAB_2",
+            "value": ""
+        },
+        {
+            "name": "CUSTOM_TAB_3",
+            "value": ""
+        },
+        {
+            "name": "CUSTOM_TAB_4",
+            "value": ""
         }
     ],
     "objects": [
@@ -663,8 +675,20 @@
                                         "value": "${KEYCLOAK_CLIENT_ID}"
                                     },
                                     {
-                                        "name": "CRW_URL",
-                                        "value": "${CRW_URL}"
+                                        "name": "CUSTOM_TAB_1",
+                                        "value": "${CUSTOM_TAB_1}"
+                                    },
+                                    {
+                                        "name": "CUSTOM_TAB_2",
+                                        "value": "${CUSTOM_TAB_2}"
+                                    },
+                                    {
+                                        "name": "CUSTOM_TAB_3",
+                                        "value": "${CUSTOM_TAB_3}"
+                                    },
+                                    {
+                                        "name": "CUSTOM_TAB_4",
+                                        "value": "${CUSTOM_TAB_4}"
                                     },
                                     {
                                         "name": "API_SERVER",
