@@ -82,6 +82,23 @@ oc new-app https://raw.githubusercontent.com/openshift-homeroom/workshop-spawner
 
 Look at the individual template files in the templates directory for the list of parameters they accept.
 
+### Adding Custom Tabs to the Dashboard
+In addition to the **Terminal** and **Console** tabs, you can add custom tabs to the dashboard view by utilizing  `CUSTOM_TAB_*` environment variables. These should be passed to the template in the following format:
+
+```
+CUSTOM_TAB_1=<tab_label>=<url>
+e.g. CUSTOM_TAB_1=Kiali=https://kiali.openshift.com
+```
+
+The current dashboard image offers support for up to 4 custom tabs. It's important to note that content is loaded in iframes, so embedded oauth flows are not possible. For each tab, options are:
+
+1. Delegate the OAuth flow to the workshop-dashboard itself (see `external-keycloak` deployment spec)
+2. Use a form of authentication that doesn't require cross-domain redirects
+3. Disable authentication
+
+You should also be wary of iframe targets that respond with a `X-Frame-Options: DENY` header, which prevent a page from being loaded in an iframe. If you can't configure the server to remove this header, you won't be able to add it to the dashboard.
+
+
 Deployment scripts
 ------------------
 

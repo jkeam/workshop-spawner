@@ -85,12 +85,12 @@
         },
         {
             "name": "WORKSHOP_IMAGE",
-            "value": "quay.io/akrohg/workshop-dashboard-crw:latest",
+            "value": "quay.io/redhatgov/workshop-dashboard:latest",
             "required": false
         },
         {
             "name": "SPAWNER_IMAGE",
-            "value": "quay.io/akrohg/workshop-spawner-custom:latest",
+            "value": "quay.io/redhatgov/workshop-spawner:latest",
             "required": true
         },
         {
@@ -170,7 +170,8 @@
         },
         {
             "name": "KEYCLOAK_AUTH_URL",
-            "value": "https://keycloak-user3-cicd.apps.cluster-dso-80a8.dso-80a8.example.opentlc.com/auth"
+            "value": "",
+            "required": true
         },
         {
             "name": "KEYCLOAK_REALM",
