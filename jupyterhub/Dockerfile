@@ -1,20 +1,20 @@
-FROM centos/s2i-base-centos7:latest
+FROM registry.access.redhat.com/ubi8/python-36:latest
 
 USER root
 
 # Install required system packages.
 
 RUN HOME=/root && \
-    INSTALL_PKGS="sudo jq rh-python36 rh-python36-python-devel \
-        rh-python36-python-setuptools rh-python36-python-pip \
-        httpd24 httpd24-httpd-devel httpd24-mod_ssl httpd24-mod_auth_kerb \
-        httpd24-mod_ldap httpd24-mod_session" && \
-    yum install -y centos-release-scl epel-release && \
-    yum install -y --setopt=tsflags=nodocs \
-        --enablerepo=centosplus $INSTALL_PKGS && \
+    INSTALL_PKGS="sudo httpd httpd-devel mod_ssl \
+            mod_auth_gssapi mod_ldap mod_session \
+            redhat-logos-httpd" && \
+    dnf install -y --setopt=tsflags=nodocs $INSTALL_PKGS && \
     rpm -V $INSTALL_PKGS && \
-    # Remove centos-logos (httpd dependency) to keep image size smaller.
-    rpm -e --nodeps centos-logos && \
+    curl -s -L -o /usr/local/bin/jq \
+    https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && \
+    chmod +x /usr/local/bin/jq && \
+    yum -y update mod_http2 && \
+    rpm -e --nodeps redhat-logos-httpd && \
     yum -y clean all --enablerepo='*'
 
 # Fixup handling for UNIX accounts.
