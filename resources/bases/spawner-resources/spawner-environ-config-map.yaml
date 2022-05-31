@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: spawner-environ
 data:
-  TERMINAL_IMAGE: quay.io/openshifthomeroom/workshop-terminal:latest
+  TERMINAL_IMAGE: quay.io/redhatgov/workshop-terminal:latest

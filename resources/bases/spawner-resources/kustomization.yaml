@@ -16,5 +16,5 @@ resources:
 
 images:
 - name: workshop-spawner
-  newName: quay.io/openshifthomeroom/workshop-spawner
+  newName: quay.io/redhatgov/workshop-spawner
   newTag: latest

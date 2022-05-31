@@ -94,7 +94,7 @@
         },
         {
             "name": "SPAWNER_IMAGE",
-            "value": "quay.io/openshifthomeroom/workshop-spawner:7.1.0",
+            "value": "quay.io/redhatgov/workshop-spawner:latest",
             "required": true
         },
         {
@@ -748,7 +748,7 @@
                         "name": "latest",
                         "from": {
                             "kind": "DockerImage",
-                            "name": "quay.io/openshifthomeroom/workshop-dashboard:5.0.0"
+                            "name": "quay.io/redhatgov/workshop-dashboard:latest"
                         }
                     }
                 ]
